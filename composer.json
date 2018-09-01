@@ -1,0 +1,14 @@
+{
+  "name": "drupal/privacy_policy",
+  "type": "drupal-module",
+  "description": "A Privacy Policy module that creates a flag attached to user accounts to determine if they have accepted the privacy policy. Also includes a simple form that displays the privacy policy for them to read.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/privacy_policy",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/privacy_policy",
+    "source": "http://cgit.drupalcode.org/privacy_policy"
+  },
+  "require": { }
+}

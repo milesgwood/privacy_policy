@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains privacy_policy.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function privacy_policy_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the privacy_policy module.
+    case 'help.page.privacy_policy':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A Privacy Policy module that creates a flag attached to user accounts to determine if they have accepted the privacy policy. Also includes a simple form that displays the privacy policy for them to read.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function privacy_policy_theme() {
+  return [
+    'privacy_policy' => [
+      'render element' => 'children',
+    ],
+  ];
+}

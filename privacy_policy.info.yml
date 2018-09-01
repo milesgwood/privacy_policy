@@ -1,0 +1,5 @@
+name: 'privacy_policy'
+type: module
+description: 'A Privacy Policy module that creates a flag attached to user accounts to determine if they have accepted the privacy policy. Also includes a simple form that displays the privacy policy for them to read.'
+core: 8.x
+package: 'Custom'
