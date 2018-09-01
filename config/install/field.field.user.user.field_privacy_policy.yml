@@ -1,0 +1,22 @@
+uuid: 5a9f675b-da09-4c84-981e-9b1f294e3e75
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_privacy_policy
+  module:
+    - user
+id: user.user.field_privacy_policy
+field_name: field_privacy_policy
+entity_type: user
+bundle: user
+label: 'Privacy Policy Acceptance'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
