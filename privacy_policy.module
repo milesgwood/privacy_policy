@@ -4,19 +4,20 @@
  * @file
  * Contains privacy_policy.module.
  */
-
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * Implements hook_help().
  */
-function privacy_policy_help($route_name, RouteMatchInterface $route_match) {
-  switch ($route_name) {
+function privacy_policy_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
     // Main module help for the privacy_policy module.
     case 'help.page.privacy_policy':
       $output = '';
-      $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('A Privacy Policy module that creates a flag attached to user accounts to determine if they have accepted the privacy policy. Also includes a simple form that displays the privacy policy for them to read.') . '</p>';
+      $output .= '<h3>'.t('About').'</h3>';
+      $output .= '<p>'.t('A Privacy Policy module that creates a flag attached to user accounts to determine if they have accepted the privacy policy. Also includes a simple form that displays the privacy policy for them to read.').'</p>';
+
       return $output;
 
     default:
@@ -26,10 +27,70 @@ function privacy_policy_help($route_name, RouteMatchInterface $route_match) {
 /**
  * Implements hook_theme().
  */
-function privacy_policy_theme() {
-  return [
+function privacy_policy_theme()
+{
+    return [
     'privacy_policy' => [
       'render element' => 'children',
     ],
   ];
+}
+
+function privacy_policy_enable()
+{
+    // Check if our field is not already created.
+    if (!field_info_field('privacy_policy_accepted')) {
+        // Create the field base.
+        $field = array(
+          'field_name' => 'privacy_policy_accepted',
+          'type' => 'boolean',
+        );
+        field_create_field($field);
+
+        // Create the field instance on the bundle.
+        $instance = array(
+          'field_name' => 'privacy_policy_accepted',
+          'entity_type' => 'user',
+          'label' => 'Privacy Policy Accepted',
+          'bundle' => 'user',
+          // If you don't set the "required" property then the field wont be required by default.
+          'required' => true,
+          'settings' => array(
+          // Here you inform either or not you want this field showing up on the registration form.
+          'user_register_form' => 1,
+          ),
+          'widget' => array(
+          'type' => 'textfield',
+          ),
+        );
+        field_create_instance($instance);
+    }
+
+    // Check if our field is not already created.
+    if (!field_info_field('api_password')) {
+        // Create the field base.
+        $field = array(
+'field_name' => 'api_password',
+'type' => 'text',
+);
+        field_create_field($field);
+
+        // Create the field instance on the bundle.
+        $instance = array(
+'field_name' => 'api_password',
+'entity_type' => 'user',
+'label' => 'api password',
+'bundle' => 'user',
+// If you don't set the "required" property then the field wont be required by default.
+'required' => true,
+'settings' => array(
+// Here you inform either or not you want this field showing up on the registration form.
+'user_register_form' => 1,
+),
+'widget' => array(
+'type' => 'textfield',
+),
+);
+        field_create_instance($instance);
+    }
 }
